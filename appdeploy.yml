@@ -9,6 +9,7 @@ spec:
       targetPort: 8080
   selector:
     app: app
+    role: tenanttwonamespace
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,6 +29,7 @@ spec:
     metadata:
       labels:
         app: app
+        role: tenanttwonamespace
     spec:
       containers:
         - name: app
@@ -55,6 +57,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
   labels:
     app: app
+    role: tenanttwonamespace
 spec:
   rules:
     - http:
