@@ -24,8 +24,8 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Tenant 2- App" + "-->Repsonse from Tenant1" +
-                restTemplate.getForObject("http://ab65fdc6-tenantonenamespac-8ac8-343232585.us-west-2.elb.amazonaws.com",
+        return "Tenant 2- App" + "--> Repsonse from Tenant1" +
+                restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-dc0f-1048919814.us-west-2.elb.amazonaws.com",
                         String.class);
     }
 
