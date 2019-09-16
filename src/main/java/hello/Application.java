@@ -24,9 +24,28 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Tenant 2- App" + "--> Repsonse from Tenant1" +
-                restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-dc0f-1048919814.us-west-2.elb.amazonaws.com",
-                        String.class);
+        String privatep = "private blank";
+        try
+        {
+            privatep =  restTemplate.getForObject("http://10.100.182.84:30090", String.class);
+        }
+        catch (Exception e)
+        {
+            privatep = "privateExceptionmessage-->" + e.getMessage();
+        }
+        String publicip = "public blank ";
+        try
+        {
+            publicip = restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-dc0f-1048919814.us-west-2.elb.amazonaws.com",
+                    String.class);
+        }
+        catch (Exception e)
+        {
+            publicip = "publicexceptionmessage-->" + e.getMessage();
+        }
+
+        return "Tenant 2- App" + "--> Repsonse from Tenant1-->" +
+                privatep + "-->" + publicip;
     }
 
     public static void main(String[] args) {
