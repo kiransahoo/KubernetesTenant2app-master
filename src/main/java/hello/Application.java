@@ -31,7 +31,7 @@ public class Application {
         }
         catch (Exception e)
         {
-            privatep = "privateExceptionmessage---------->" + e.getMessage();
+            privatep = "privateExceptionmessage***---------->" + e.getMessage();
         }
         String publicip = "public blank ";
 //        try
