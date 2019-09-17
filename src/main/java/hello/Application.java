@@ -34,15 +34,15 @@ public class Application {
             privatep = "privateExceptionmessage---------->" + e.getMessage();
         }
         String publicip = "public blank ";
-        try
-        {
-            publicip = restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-ccbf-927119695.us-west-2.elb.amazonaws.com",
-                    String.class);
-        }
-        catch (Exception e)
-        {
-            publicip = "publicexceptionmessage-->" + e.getMessage();
-        }
+//        try
+//        {
+//            publicip = restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-ccbf-927119695.us-west-2.elb.amazonaws.com",
+//                    String.class);
+//        }
+//        catch (Exception e)
+//        {
+//            publicip = "publicexceptionmessage-->" + e.getMessage();
+//        }
 
         return "Tenant 2- App" + "--> Repsonse from Tenant1-->" +
                 privatep + "-->" + publicip;
