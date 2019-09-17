@@ -26,15 +26,15 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        log.error("Entering here--->");
-        System.out.println("System out-->");
+        log.error("Entering here qith corrction--->");
+        System.out.println("System out tenanttwonamespace-->");
         String privatep = "private blank";
         try
         {
-            log.error("came here here--->");
+            log.error("came here here --->");
             System.out.println("System out here-->");
            // privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
-            privatep =  restTemplate.getForObject("tenantthreeapp.tenantthreenamespace.svc.cluster.local:80", String.class);
+            privatep =  restTemplate.getForObject("http://tenantthreeapp.tenantthreenamespace.svc.cluster.local:80", String.class);
         }
         catch (Exception e)
         {
