@@ -27,16 +27,16 @@ public class Application {
         String privatep = "private blank";
         try
         {
-            privatep =  restTemplate.getForObject("http://10.100.182.84:30090", String.class);
+            privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
         }
         catch (Exception e)
         {
-            privatep = "privateExceptionmessage-->" + e.getMessage();
+            privatep = "privateExceptionmessage---------->" + e.getMessage();
         }
         String publicip = "public blank ";
         try
         {
-            publicip = restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-dc0f-1048919814.us-west-2.elb.amazonaws.com",
+            publicip = restTemplate.getForObject("http://ab65fdc6-tenantthreenamesp-ccbf-927119695.us-west-2.elb.amazonaws.com",
                     String.class);
         }
         catch (Exception e)
