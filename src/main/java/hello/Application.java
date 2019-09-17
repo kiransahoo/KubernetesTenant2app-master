@@ -1,5 +1,7 @@
 package hello;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 public class Application {
 
     private RestTemplate restTemplate;
-
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         restTemplate = builder.build();
@@ -24,14 +26,22 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
+        log.error("Entering here--->");
+        System.out.println("System out-->");
         String privatep = "private blank";
         try
         {
-            privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
+            log.error("came here here--->");
+            System.out.println("System out here-->");
+           // privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
+            privatep =  restTemplate.getForObject("tenantthreeapp.tenantthreenamespace.svc.cluster.local:80", String.class);
         }
         catch (Exception e)
         {
+
+            log.error("error here here--->", e);
             privatep = "privateExceptionmessage***---------->" + e.getMessage();
+            System.out.println("System out here-->" + privatep);
         }
         String publicip = "public blank ";
 //        try
