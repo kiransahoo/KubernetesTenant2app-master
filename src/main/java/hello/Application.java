@@ -29,12 +29,14 @@ public class Application {
         log.error("Entering here qith corrction--->");
         System.out.println("System out tenanttwonamespace-->");
         String privatep = "private blank";
+        String metricsserver = "";
         try
         {
             log.error("came here here --->");
             System.out.println("System out here-->");
            // privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
             privatep =  restTemplate.getForObject("http://tenantthreeapp.tenantthreenamespace.svc.cluster.local:80", String.class);
+            metricsserver = restTemplate.getForObject("http://metrics-server.metrics.svc.cluster.local:443/apis/metrics.k8s.io/v1beta1/pods", String.class);
         }
         catch (Exception e)
         {
@@ -55,7 +57,7 @@ public class Application {
 //        }
 
         return "Tenant 2- App" + "--> Repsonse from Tenant1-->" +
-                privatep + "-->" + publicip;
+                privatep + "-->" + publicip + "---->metricsserver-->" + metricsserver;
     }
 
     public static void main(String[] args) {
