@@ -1,5 +1,11 @@
 package hello;
 
+import io.kubernetes.client.ApiClient;
+import io.kubernetes.client.Configuration;
+import io.kubernetes.client.apis.CoreV1Api;
+import io.kubernetes.client.models.V1Pod;
+import io.kubernetes.client.models.V1PodList;
+import io.kubernetes.client.util.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -30,13 +36,25 @@ public class Application {
         System.out.println("System out tenanttwonamespace-->");
         String privatep = "private blank";
         String metricsserver = "";
+        StringBuffer bf = new StringBuffer();
         try
         {
-            log.error("came here here --->");
+
+            ApiClient client = Config.defaultClient();
+            Configuration.setDefaultApiClient(client);
+
+            CoreV1Api api = new CoreV1Api();
+            V1PodList list = api.listPodForAllNamespaces(null, null, null, null, null, null, null, null, null);
+            for (V1Pod item : list.getItems()) {
+                bf.append(item.getMetadata().getName());
+                System.out.println(item.getMetadata().getName());
+            }
+            log.error("came here here ---> " + bf.toString());
+
             System.out.println("System out here-->");
            // privatep =  restTemplate.getForObject("http://10.100.43.175:80", String.class);
             privatep =  restTemplate.getForObject("http://tenantthreeapp.tenantthreenamespace.svc.cluster.local:80", String.class);
-            metricsserver = restTemplate.getForObject("http://metrics-server.metrics.svc.cluster.local:443/apis/metrics.k8s.io/v1beta1/pods", String.class);
+            //metricsserver = restTemplate.getForObject("http://metrics-server.metrics.svc.cluster.local:443/apis/metrics.k8s.io/v1beta1/pods", String.class);
         }
         catch (Exception e)
         {
@@ -57,7 +75,7 @@ public class Application {
 //        }
 
         return "Tenant 2- App" + "--> Repsonse from Tenant1-->" +
-                privatep + "-->" + publicip + "---->metricsserver-->" + metricsserver;
+                privatep + "-->" + publicip + "----api info-->" + bf.toString();
     }
 
     public static void main(String[] args) {
