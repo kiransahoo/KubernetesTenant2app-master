@@ -74,7 +74,7 @@ public class Application {
 //            publicip = "publicexceptionmessage-->" + e.getMessage();
 //        }
 
-        return "Tenant 2- App-forever";
+        return "This app belongs to Test Tenant";
     }
 
     public static void main(String[] args) {
