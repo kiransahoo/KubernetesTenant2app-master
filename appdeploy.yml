@@ -54,7 +54,8 @@ metadata:
   name: app
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/subnets: subnet-8e5f37c6,subnet-d52d9ef9
   labels:
     app: app
     role: tenanttwonamespace
